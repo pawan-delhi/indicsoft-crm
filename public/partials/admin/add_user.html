@@ -1,0 +1,135 @@
+<ul class="breadcrumb">
+    <li><a href="#">Dasbhoard</a></li>
+    <li class="active">Add User</li>
+</ul>
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" ng-submit="addUser(user)">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Add</strong> New User</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="text-center">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <div class="image-container">
+                                        <img ng-src="{{user.userImage}}" style="border:1px solid;" alt="Admin" />
+                                        <div class="after">
+                                            <input type="file" id="fileInput" data-ng-show="false" accept="image/jpeg, image/JPG, image/JPEG, image/jpeg" filereader on-file-upload="updateImageView(file)" image-file="image" />
+                                            <input type="button" data-ng-click="handleFileButtonClick('fileInput')" style="width:200px;height:200px;text-decoration:underline;" class="upload_button" value="Change Image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">First Name</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                            <input type="text" class="form-control" ng-model="user.firstName" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Last Name</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                            <input type="text" class="form-control" ng-model="user.lastName" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Role</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control select" ng-model="user.role" ng-change="getRole(user.role)">
+                                            <option value="" selected>Select Role</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="CEO">CEO</option>
+                                            <option value="Manager">Manager</option>
+                                            <option value="Executive">Executive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="user.role=='Executive'">
+                                    <label class="col-md-3 control-label ">Manager</label> {{user}}
+                                    <div class="col-md-9 ">
+                                        <select class="form-control select" ng-options="item.firstName +' '+ item.lastName for item in managerList" ng-model="user.manager" ng-change="getManagerDepartment(user.manager._id)" required>
+                                            <option value="" selected>Select Manager</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="user.role=='Manager'">
+                                    <label class="col-md-3 control-label ">Department</label>
+                                    <div class="col-md-9 ">
+                                        <select class="form-control select " ng-model="user.dname" required>
+                                            <option value="" selected>Select Department</option>
+                                            <option ng-repeat="item in departmentList" ng-if="item.type=='department'">{{item.dname}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="user.role=='Executive'">
+                                    <label class="col-md-3 control-label ">Department</label>
+                                    <div class="col-md-9 ">
+                                        <select class="form-control select " ng-model="user.dname" required>
+                                            <option ng-repeat="item in departmentList" selected>{{item.dname}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                            <input type="email" class="form-control" ng-model="user.email" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Mobile</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-mobile"></span></span>
+                                            <input type="text" maxlength="10" only-digits class="form-control" ng-model="user.mobile" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cropModel" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <div>
+                                            <h3 class="panel-title">Crop Picture</h3>
+                                        </div>
+                                        <div>
+                                            <br>
+                                            <hr>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="cropArea">
+                                                <img-crop image="myImage" area-type="square" chargement="'Loading'" result-image="myCroppedImage"></img-crop>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div style="text-align:right;">
+                                            <input type="button" class="btn btn-primary" ng-click="imageCroped(myCroppedImage)" value="Crop Image" />
+                                            <input type="button" class="btn" onclick="document.getElementById('cropModel').style.display = 'none';" value="Cancel" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <input type="button" class="btn btn-default" ng-click="resetAddCutomerForm()" value="Clear Form">
+                        <input type="submit" class="btn btn-primary pull-right" ng-click="submitted==true" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

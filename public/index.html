@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <title>Indicsoft-CRM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" id="theme" href="css/styles.css" />
+    <link href="css/angular-toasty.min.css" rel="stylesheet" />
+    <link href="css/ng-img-crop.css" rel="stylesheet" />
+
+</head>
+
+<body ng-app="indicsoft_erp">
+    <div class="page-loading overlay">
+        <p>
+            <span class="loading-text">Loading</span>
+            <img src="img/loader.svg" />
+        </p>
+    </div>
+    <toasty></toasty>
+    <div ui-view></div>
+
+    <!--Javascript Plugins-->
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="javascripts/angular.min.js"></script>
+    <script type="text/javascript" src="javascripts/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="javascripts/angular-toasty.min.js"></script>
+    <script type="text/javascript" src="javascripts/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script type="text/javascript" src="javascripts/ng-img-crop.js"></script>
+    <script type="text/javascript" src='javascripts/angular-sanitize.min.js'></script>
+    <script type="text/javascript" src="javascripts/ng-csv.min.js"></script>
+
+    <!--Angular Application-->
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/services/imageService.js"></script>
+    <script type="text/javascript" src="app/controllers/indexController.js"></script>
+    <script type="text/javascript" src="app/controllers/adminController.js"></script>
+    <script type="text/javascript" src="app/controllers/userController.js"></script>
+    <script type="text/javascript" src="app/services/loginService.js"></script>
+    <script type="text/javascript" src="app/services/userService.js"></script>
+    <script type="text/javascript" src="app/services/adminService.js"></script>
+    <script type="text/javascript" src="app/directives/formValidation.js"></script>
+
+</body>
+
+</html>

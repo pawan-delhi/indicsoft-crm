@@ -1,0 +1,42 @@
+<div class="login-container">
+    <div class="login-box animated fadeInDown">
+        <div class="login-head">
+            <div class="login-title"><strong>Indicsoft</strong> CRM</div>
+        </div>
+        <div class="login-body">
+            <div class="login-title"><strong>Welcome</strong>, Please login</div>
+            <form name="loginForm" valid-submit="login(user)" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" placeholder="Username" name="email" ng-model="user.email" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="password" class="form-control" placeholder="Password" name="password" ng-model="user.password" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-info btn-block" value="Log In" ng-click="submitted==true">
+                    </div>
+                </div>
+                <div>
+                    <div class="text-center" ng-if="loginError==true" style="background: rgb(156, 43, 46) none repeat scroll 0% 0%; border-radius: 3px; padding: 6px 5px 6px 7px; color: #FFF;">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{loginMessage}}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="login-footer">
+            <div class="pull-left">
+                &copy; 2016 Indicsoft Pvt Ltd
+            </div>
+            <div class="pull-right">
+                <a href="#">About</a> |
+                <a href="#">Privacy</a> |
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<ul class="breadcrumb">
+    <li><a href="#">Dasbhoard</a></li>
+    <li class="active">User List</li>
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div style="font-size:17px;">
+                        <span>Users | </span>
+                        <a ui-sref="adminDashboard.addUser">
+                            <button class="btn btn-success">+ Add New</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
+                    <form ng-submit="searchUser(searchElement)">
+                        <div class="input-group push-down-10">
+                            <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                            <input type="text" class="form-control" placeholder="Search User" ng-model="searchElement" required/>
+                            <div class="input-group-btn">
+                                <input type="submit" class="btn btn-primary" value="Search" ng-click="submitted==true" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <button type="button" class="btn btn-default" title="Download CSV" ng-csv="userList" filename="user.csv" csv-header="['Document ID', 'First Name', 'Last Name', 'Role', 'Email', 'Created By', 'Created Time', 'Account Suspended']" charset="utf-8"><i class="fa fa-download" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="no_data" ng-if="userList.length==0">Sorry! data not found </div>
+                <div style="overflow-x:auto;">
+                    <table class="table datatable" ng-if="userList.length!=0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Created_by</th>
+                                <th>Created_at</th>
+                                <th>Suspended</th>
+                                <th>Password</th>
+                                <th>Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="userList in userList" ng-class="{'blocked_user' : userList.blocked==true}">
+                                <td>
+                                    <a ui-sref="adminDashboard.userProfile({id:userList._id})" ng-if="userList.email!='super_admin'">{{userList.firstName}} {{userList.lastName}}</a>
+                                    <span ng-if="userList.email=='super_admin'">{{userList.firstName}} {{userList.lastName}}</span>
+                                </td>
+                                <td>
+                                    <span ng-if="userList.email!='super_admin'">{{userList.email}}</span>
+                                    <span ng-if="userList.email=='super_admin'">---</span>
+                                </td>
+                                <td>{{userList.role}}</td>
+                                <td>{{userList.created_by}}</td>
+                                <td>{{userList.created_at | date:'d MMM, yyyy, hh:mm:ss a' : 'UTC + 5:30'}}</td>
+                                <td>{{userList.blocked}}</td>
+                                <td>
+                                    <a href="" confirmed-click="resetPassword(userList.email, 'user')" ng-confirm-click="Do you want to reset password?" ng-if="userList.email!='super_admin'">Reset</a>
+                                    <span ng-if="userList.email=='super_admin'">---</span>
+                                </td>
+                                <td>
+                                    <span ng-if="userList.email!='super_admin'">
+                                        <a ng-if="userList.blocked==false" href="" title="suspend user" confirmed-click="blockUser(userList._id)" ng-confirm-click="Do you want to block this user?"><i class="fa fa-ban" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a>
+                                        <a ng-if="userList.blocked==true" href="" title="resume user" confirmed-click="unblockUser(userList._id)" ng-confirm-click="Do you want to unblock this user?"><i class="fa fa-ban" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a>                                    |
+                                        <a href="" title="remove user" confirmed-click="deleteUser(userList._id)" ng-confirm-click="Do you want to delete this user?"><i class="fa fa-trash-o" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a>
+                                    </span>
+                                    <span ng-if="userList.email=='super_admin'">---</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="float:right;">
+            <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+        </div>
+    </div>
+</div>

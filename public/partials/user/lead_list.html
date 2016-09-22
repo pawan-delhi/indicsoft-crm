@@ -1,0 +1,71 @@
+<ul class="breadcrumb">
+    <li><a href="#">Dasbhoard</a></li>
+    <li class="active">User List</li>
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div style="font-size:17px;">
+                        <span>Leads | </span>
+                        <a ui-sref="userDashboard.addLead">
+                            <button class="btn btn-success">+ Add Lead</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
+                    <form ng-submit="searchUser(searchElement)">
+                        <div class="input-group push-down-10">
+                            <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                            <input type="text" class="form-control" placeholder="Search Lead" ng-model="searchElement" required/>
+                            <div class="input-group-btn">
+                                <input type="submit" class="btn btn-primary" value="Search" ng-click="submitted==true" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <button type="button" class="btn btn-default" title="Download CSV" ng-csv="userList" filename="user.csv" csv-header="['Document ID', 'First Name', 'Last Name', 'Role', 'Email', 'Created By', 'Is Active', 'Created Time', 'Account Suspended']" charset="utf-8"><i class="fa fa-download" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="no_data" ng-if="leadList.length==0">Sorry! data not found </div>
+                <div style="overflow-x:auto;">
+                    <table class="table datatable" ng-if="leadList.length!=0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Company Name</th>
+                                <th>Priority</th>
+                                <th>Assigned To</th>
+                                <th>Last Updated</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="leadList in leadList">
+                                <td><a ui-sref="userDashboard.leadProfile({id:leadList._id})">{{leadList.firstName}} {{leadList.lastName}}</a></td>
+                                <td>{{leadList.company}}</td>
+                                <td>
+                                    <div class="priority high" ng-if="leadList.priority=='High'"></div>
+                                    <div class="priority medium" ng-if="leadList.priority=='Medium'"></div>
+                                    <div class="priority low" ng-if="leadList.priority=='Low'"></div>
+                                    <div class="priority cold" ng-if="leadList.priority=='Cold'"></div>
+                                </td>
+                                <td><a href="">{{leadList.assignName}}</a></td>
+                                <td>{{leadList.lastUpdated | date:'d MMM, yyyy, hh:mm:ss a' : 'UTC + 5:30'}}</td>
+                                <td>{{leadList.status}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="float:right;">
+            <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+        </div>
+    </div>
+</div>

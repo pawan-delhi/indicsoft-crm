@@ -1,0 +1,140 @@
+<ul class="breadcrumb">
+    <li class="active">Add Lead {{fullName}}</li>
+</ul>
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" ng-submit="addLead(lead)">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Add</strong> New Lead</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="text-center">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">First Name</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                            <input type="text" class="form-control" ng-model="lead.firstName" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Last Name</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                            <input type="text" class="form-control" ng-model="lead.lastName" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Company Name</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                            <input type="text" class="form-control" ng-model="lead.company" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Mobile</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-mobile"></span></span>
+                                            <input type="text" maxlength="10" only-digits class="form-control" ng-model="lead.mobile" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                                            <input type="email" class="form-control" ng-model="lead.email" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="hidden" ng-model="lead.assignName" />
+                                </div>
+                                <div>
+                                    <input type="hidden" ng-model="lead.assignId" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Status</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control select " ng-model="lead.status">
+                                            <option value="" selected>Select Status</option>
+                                            <option ng-repeat="item in dropdownList" ng-if="item.type=='status'">{{item.dname}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Campaign</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control select " ng-model="lead.campaign" required>
+                                            <option value="" selected>Select Campaign</option>
+                                            <option ng-repeat="item in dropdownList" ng-if="item.type=='campaign'">{{item.dname}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Priority</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control select " ng-model="lead.priority" required>
+                                            <option value="" selected>Select Priority</option>
+                                            <option ng-repeat="item in dropdownList" ng-if="item.type=='priority'">{{item.dname}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Address</label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" rows="5" ng-model="lead.address"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Zip</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+                                            <input type="text" class="form-control" ng-model="lead.zip" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="cropModel" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <div class="text-center">
+                                            <div class="cropArea">
+                                                <img-crop image="myImage" area-type="square" chargement="'Loading'" result-image="myCroppedImage"></img-crop>
+                                            </div>
+                                        </div>
+                                        <div style="text-align:right;">
+                                            <input type="button" class="btn" ng-click="imageCroped(myCroppedImage)" value="Crop Image" />
+                                            <input type="button" class="btn" ng-click="imageCroped(myCroppedImage)" value="Cancel" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <input type="button" class="btn btn-default" ng-click="resetAddCutomerForm()" value="Clear Form">
+                        <input type="submit" class="btn btn-primary pull-right" ng-click="submitted==true" value="Submit" ng-disabled="disable">
+                        <span style="color:#000;float:right;" ng-if="loading==true">
+                            <i class="fa fa-circle-o-notch fa-spin fa-fw"></i><span> please wait...</span>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

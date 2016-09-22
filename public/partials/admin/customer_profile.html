@@ -1,0 +1,128 @@
+<ul class="breadcrumb">
+    <li><a href="#">Sales</a></li>
+    <li><a href="#">Customer</a></li>
+    <li class="active">{{customerData.lastName}}</li>
+</ul>
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>{{customerData.lastName}}'s </strong> Profile</h3>
+                        <ul class="panel-controls" style="margin-top: 2px;">
+                            <li><a href="#" class="panel-fullscreen"><span class="fa fa-pencil"></span></a></li>
+                            <li ng-click="removeCustomer(customerData._id)"><a href="" class="panel-refresh"><span class="fa fa-trash"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="text-center">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Profile Picture</label>
+                                    <div class="col-md-9">
+                                        <img ng-src="{{customerData.customerImage}}" style="border:1px solid;" alt="Admin" width="26%;" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Full Name</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.firstName}} {{customerData.lastName}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Job Position</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.jobPosition}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Date of Birth</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.dob}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.email}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Skype</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.skype}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">LinkedIn</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.linkedin}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Facebook</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.facebook}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Company</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.company}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Street</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.street}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">City</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.city}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">State</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.state}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Country</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.country}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Zip</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.zip}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Phone</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.phone}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Mobile</label>
+                                    <div class="col-md-9">
+                                        <label class="control-label profile_view_text">{{customerData.mobile}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,245 @@
+<ul class="breadcrumb">
+    <li class="active">Dropdown Manager</li>
+</ul>
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" ng-submit="addDropdown(department)">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Department</strong> List</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="margin-bottom:10px;">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-model="department.name" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" ng-model="department.type" ng-init="department.type='department'" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8">
+                                <div class="form-group">
+                                    <div>
+                                        <div class="input-group">
+                                            <button class="btn btn-success">+ Add Department</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="dropdownList.length==0">
+                            <div class="no_department">
+                                No department has added
+                            </div>
+                        </div>
+                        <div style="margin-top:40px;" ng-if="dropdownList.length>0">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Department Name</th>
+                                        <th>Created by</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dropdown in dropdownList" ng-if="dropdown.type=='department'">
+                                        <td>{{dropdown.dname}}</td>
+                                        <td>{{dropdown.created_by}}</td>
+                                        <td><a href="" title="remove department" confirmed-click="deleteDropdown(dropdown._id)" ng-confirm-click="Do you want to delete this department?"><i class="fa fa-trash-o" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-horizontal " ng-submit="addDropdown(lead) ">
+                <div class="panel panel-default ">
+                    <div class="panel-heading ">
+                        <h3 class="panel-title "><strong>Lead Status</strong> List</h3>
+                    </div>
+                    <div class="panel-body ">
+                        <div style="margin-bottom:10px; ">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group ">
+                                    <div>
+                                        <div class="input-group ">
+                                            <input type="text " class="form-control " ng-model="lead.name " required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-group ">
+                                        <input type="hidden" class="form-control " ng-model="lead.type " ng-init="lead.type='status' " disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8">
+                                <div class="form-group ">
+                                    <div>
+                                        <div class="input-group ">
+                                            <button class="btn btn-success ">+ Add Status</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="dropdownList.length==0 ">
+                            <div class="no_department ">
+                                No status has added
+                            </div>
+                        </div>
+                        <div style="margin-top:40px; " ng-if="dropdownList.length>0">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Status Name</th>
+                                        <th>Created by</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dropdown in dropdownList" ng-if="dropdown.type=='status'">
+                                        <td>{{dropdown.dname}}</td>
+                                        <td>{{dropdown.created_by}}</td>
+                                        <td><a href="" title="remove department" confirmed-click="deleteDropdown(dropdown._id)" ng-confirm-click="Do you want to delete this department?"><i class="fa fa-trash-o" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" ng-submit="addDropdown(campaign)">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Campaign</strong> List</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="margin-bottom:10px;">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-model="campaign.name" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" ng-model="campaign.type" ng-init="campaign.type='campaign'" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8">
+                                <div class="form-group">
+                                    <div>
+                                        <div class="input-group">
+                                            <button class="btn btn-success">+ Add Campaign</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="dropdownList.length==0">
+                            <div class="no_department">
+                                No Campaign has added
+                            </div>
+                        </div>
+                        <div style="margin-top:40px;" ng-if="dropdownList.length>0">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Campaign Name</th>
+                                        <th>Created by</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dropdown in dropdownList" ng-if="dropdown.type=='campaign'">
+                                        <td>{{dropdown.dname}}</td>
+                                        <td>{{dropdown.created_by}}</td>
+                                        <td><a href="" title="remove department" confirmed-click="deleteDropdown(dropdown._id)" ng-confirm-click="Do you want to delete this department?"><i class="fa fa-trash-o" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-horizontal" ng-submit="addDropdown(priority)">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Priority</strong> List</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="margin-bottom:10px;">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    <div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-model="priority.name" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-group">
+                                        <input type="hidden" class="form-control" ng-model="priority.type" ng-init="priority.type='priority'" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8">
+                                <div class="form-group">
+                                    <div>
+                                        <div class="input-group">
+                                            <button class="btn btn-success">+ Add Status</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="dropdownList.length==0">
+                            <div class="no_department">
+                                No priority has added
+                            </div>
+                        </div>
+                        <div style="margin-top:40px;" ng-if="dropdownList.length>0">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Priority Name</th>
+                                        <th>Created by</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dropdown in dropdownList" ng-if="dropdown.type=='priority'">
+                                        <td>{{dropdown.dname}}</td>
+                                        <td>{{dropdown.created_by}}</td>
+                                        <td><a href="" title="remove department" confirmed-click="deleteDropdown(dropdown._id)" ng-confirm-click="Do you want to delete this department?"><i class="fa fa-trash-o" style="border: 1px solid; border-radius: 3px; padding: 3px;" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<ul class="breadcrumb">
+    <li class="active">Dashboard</li>
+</ul>
+
+<div class="col-md-3">
+    <div class="widget widget-default widget-item-icon">
+        <div class="widget-item-left">
+            <span class="fa fa-user-secret"></span>
+        </div>
+        <div class="widget-data">
+            <div class="widget-int num-count">{{adminData.admin}}</div>
+            <div class="widget-title">Admin User</div>
+            <div class="widget-subtitle">In our application</div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="widget widget-default widget-item-icon">
+        <div class="widget-item-left">
+            <span class="fa fa-user-secret"></span>
+        </div>
+        <div class="widget-data">
+            <div class="widget-int num-count">0</div>
+            <div class="widget-title">Admin User</div>
+            <div class="widget-subtitle">In our application</div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="widget widget-default widget-item-icon">
+        <div class="widget-item-left">
+            <span class="fa fa-user-secret"></span>
+        </div>
+        <div class="widget-data">
+            <div class="widget-int num-count">0</div>
+            <div class="widget-title">Admin User</div>
+            <div class="widget-subtitle">In our application</div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="widget widget-info widget-padding-sm">
+        <div class="widget-big-int plugin-clock">{{ clock.time | date : "hh:mm:ss a" }}</div>
+        <div class="widget-big-int plugin-clock">{{ clock.time | date : fulldate }}</div>
+    </div>
+</div>
