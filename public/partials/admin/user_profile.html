@@ -40,9 +40,16 @@
                                         <span>{{userProfileData.blocked}}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label>Last Login:</label>
-                                        <span ng-if="userProfileData.lastLogin!=undefined">{{userProfileData.lastLogin | date:'d MMM, yyyy, hh:mm:ss a' : 'UTC + 5:30'}}</span>
-                                        <span ng-if="userProfileData.lastLogin==undefined">Never</span>
+                                        <label class="pull-left">Login Status:</label>
+                                        <span ng-if="userProfileData.lastLogin!=undefined" class="pull-left">
+                                            <span ng-if="userProfileData.loggedIn==false" class="pull-left" style="margin-left:3px;">Offline ({{userProfileData.lastLogin | date:'d/MM/yy, hh:mm a' : 'UTC + 5:30'}})</span>
+                                        <span ng-if="userProfileData.loggedIn==true">
+                                            <div class="online-circle pull-left" style="margin-top:4px; margin-left:5px;"></div>
+                                            <span class="pull-left" style="margin-left:3px;">Online</span>
+
+                                        </span>
+                                        </span>
+                                        <span ng-if="userProfileData.lastLogin==undefined">Offline (Last seen: Never)</span>
                                     </div>
                                 </div>
                             </div>

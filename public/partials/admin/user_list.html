@@ -36,6 +36,7 @@
                     <table class="table datatable" ng-if="userList.length!=0">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -47,7 +48,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="userList in userList" ng-class="{'blocked_user' : userList.blocked==true}">
+                            <tr ng-repeat="userList in userList" ng-class="{'blocked_user' : userList.blocked==true}" ng-class-even="'even'">
+                                <td>
+                                    <div class="online-circle" style="margin-top:4px;" ng-if="userList.loggedIn==true"></div>
+                                    <div class="offline-circle" style="margin-top:4px;" ng-if="userList.loggedIn==false" title="Use is currently offline"></div>
+                                </td>
                                 <td>
                                     <a ui-sref="adminDashboard.userProfile({id:userList._id})" ng-if="userList.email!='super_admin'">{{userList.firstName}} {{userList.lastName}}</a>
                                     <span ng-if="userList.email=='super_admin'">{{userList.firstName}} {{userList.lastName}}</span>

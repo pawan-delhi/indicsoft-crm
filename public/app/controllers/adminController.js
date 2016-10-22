@@ -1,4 +1,4 @@
-indicsoft_erp.controller('adminController', function($scope, $http, adminService, toasty, $location, $interval) {
+indicsoft_erp.controller('adminController', function($scope, $http, Socket, adminService, toasty, $location, $interval, $timeout) {
     var urlPath = $location.path();
 
     $scope.clock = { time: "", interval: 1000 };
@@ -133,8 +133,14 @@ indicsoft_erp.controller('addUserController', function($scope, adminService, $st
     };
 });
 
-indicsoft_erp.controller('userProfileController', function($scope, userProfile, adminService, $state, toasty) {
+indicsoft_erp.controller('userProfileController', function($scope, Socket, userProfile, adminService, $state, toasty) {
     $scope.userProfileData = userProfile.data.result;
+
+    Socket.on('login-status', function(data) {
+        $scope.userProfileData.lastLogin = data.result.lastLogin;
+        $scope.userProfileData.loggedIn = data.result.loggedIn;
+        console.log(data);
+    });
 
     $scope.updateUser = function(data) {
         $(".page-loading").removeClass("hidden");
@@ -145,8 +151,6 @@ indicsoft_erp.controller('userProfileController', function($scope, userProfile, 
                     title: 'User updated!',
                     msg: 'User has been updated!'
                 });
-                $state.go('adminDashboard.userList');
-
             })
             .catch(function(error) {
                 $(".page-loading").addClass("hidden");
@@ -284,7 +288,7 @@ indicsoft_erp.controller('dropdowncontroller', function($scope, adminService, $s
     };
 });
 
-indicsoft_erp.controller('userListController', function($scope, adminService, $state, toasty, $http) {
+indicsoft_erp.controller('userListController', function($scope, Socket, adminService, $state, toasty, $http) {
     $scope.viewby = 2;
     $scope.currentPage = 1;
     $scope.itemsPerPage = $scope.viewby;
@@ -308,6 +312,15 @@ indicsoft_erp.controller('userListController', function($scope, adminService, $s
                 $(".page-loading").addClass("hidden");
             });
     };
+
+    Socket.on('updated-list', function(data) {
+        $scope.userList = data.result;
+        $scope.totalItems = data.total;
+
+        $scope.viewby = 9;
+        $scope.itemsPerPage = $scope.viewby;
+    });
+
     if ($scope.currentPage == 1) {
         paginateView();
     }

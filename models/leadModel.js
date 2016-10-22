@@ -15,7 +15,8 @@ var leadSchema = new schema({
     assignName: { type: String },
     assignId: { type: String },
     created_at: { type: Date, default: Date.now },
-    lastUpdated: { type: Date, default: Date.now }
+    lastEdited: { type: Date },
+    editor: { type: String }
 });
 
 exports.leadModel = mongoose.model('leadModel', leadSchema);

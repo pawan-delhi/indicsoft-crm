@@ -8,7 +8,9 @@
 
         service.userDetails = userDetails;
         service.addLead = addLead;
+        service.updateLead = updateLead;
         service.getLeadDetails = getLeadDetails;
+        service.getLeadProfile = getLeadProfile;
         service.getNote = getNote;
         service.newNote = newNote;
         service.logout = logout;
@@ -23,12 +25,21 @@
             return $http.post('api/addLead', data).then(handleSuccess, handleError);
         }
 
+        function updateLead(data) {
+            return $http.post('api/updateLead', data).then(handleSuccess, handleError);
+        }
+
+
         function getLeadDetails() {
             return $http.get('api/getLeadDetails').then(handleSuccess, handleError);
         }
 
         function getNote(data) {
             return $http.get('api/getNote?id=' + data).then(handleSuccess, handleError);
+        }
+
+        function getLeadProfile(data) {
+            return $http.get('api/leadProfile?id=' + data).then(handleSuccess, handleError);
         }
 
         function newNote(data) {

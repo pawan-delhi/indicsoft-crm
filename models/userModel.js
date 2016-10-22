@@ -16,6 +16,7 @@ var userSchema = new schema({
     created_by: { type: String },
     created_at: { type: Date, default: Date.now },
     isActive: { type: Boolean, default: false },
+    loggedIn: { type: Boolean, default: false },
     activationToken: { type: String },
     passwordToken: { type: String },
     passwordTokenExpired: { type: Boolean }

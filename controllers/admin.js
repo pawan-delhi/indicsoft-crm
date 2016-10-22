@@ -78,6 +78,10 @@ exports.updateUser = function(req, res) {
         if (userObj.role == 'Executive') {
             userObj.manager = userObj.manager.firstName + ' ' + userObj.manager.lastName;
         }
+        delete req.body.lastLogin;
+        delete req.body.created_by;
+        delete req.body.blocked;
+        delete req.body.created_at;
         userModel.update({ email: userObj.email }, {
             $set: userObj
         }, function(err, result) {
@@ -107,14 +111,14 @@ exports.addDropdown = function(req, res) {
 };
 
 exports.userList = function(req, res) {
-    userModel.find({}, { firstName: 1, lastName: 1, email: 1, created_at: 1, created_by: 1, role: 1, blocked: 1 })
+    userModel.find({}, { firstName: 1, lastName: 1, email: 1, created_at: 1, created_by: 1, role: 1, blocked: 1, loggedIn: 1 })
         .paginate(req.query.page, 9, function(err, docs, total) {
             res.status(200).json({ total: total, result: docs });
         });
 };
 
 exports.userProfile = function(req, res) {
-    userModel.findOne({ _id: req.query.id }, { password: 0, activationToken: 0 }, function(err, result) {
+    userModel.findOne({ _id: req.query.id }, { _id: 0, isActive: 0, password: 0, __v: 0, activationToken: 0 }, { password: 0, activationToken: 0 }, function(err, result) {
         res.status(200).json({ result: result });
     });
 };

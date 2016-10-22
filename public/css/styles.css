@@ -3810,7 +3810,7 @@ blockquote.pull-right {
 }
 
 .table>thead>tr>th {
-    background: #f1f5f9;
+    background: #C6D8F5;
     color: #56688A;
     font-size: 12px;
 }
@@ -9180,6 +9180,73 @@ li.ext_zip {
 .image-container:hover .after {
     display: block;
     background: rgba(0, 0, 0, .6);
+}
+
+.even {
+    background-color: #f1f5f9;
+}
+
+@-webkit-keyframes color_change {
+    from {
+        background-color: orange;
+    }
+    to {
+        background-color: red;
+    }
+}
+
+@-moz-keyframes color_change {
+    from {
+        background-color: orange;
+    }
+    to {
+        background-color: red;
+    }
+}
+
+@-ms-keyframes color_change {
+    from {
+        background-color: orange;
+    }
+    to {
+        background-color: red;
+    }
+}
+
+@-o-keyframes color_change {
+    from {
+        background-color: orange;
+    }
+    to {
+        background-color: red;
+    }
+}
+
+@keyframes color_change {
+    from {
+        background-color: orange;
+    }
+    to {
+        background-color: red;
+    }
+}
+
+.online-circle {
+    border-radius: 50px;
+    width: 10px;
+    height: 10px;
+    -webkit-animation: color_change 1s infinite alternate;
+    -moz-animation: color_change 1s infinite alternate;
+    -ms-animation: color_change 1s infinite alternate;
+    -o-animation: color_change 1s infinite alternate;
+    animation: color_change 1s infinite alternate;
+}
+
+.offline-circle {
+    border-radius: 50px;
+    width: 10px;
+    height: 10px;
+    background: #b0b0b0;
 }
 
 @media screen and (max-width: 768px) {

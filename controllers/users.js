@@ -59,14 +59,69 @@ exports.addLead = function(req, res) {
     });
 };
 
+exports.updateLead = function(req, res) {
+    waterfall([
+        function(callback) {
+            leadModel.findOne({ _id: req.body._id }, function(err, result) {
+                if (result.status == req.body.status) {
+                    callback(null, false);
+                } else {
+                    callback(null, true);
+                }
+            });
+        },
+        function(result1, callback) {
+            if (result1 == true) {
+                var noteObj = {
+                    leadId: req.body._id,
+                    actorId: req.session.user._id,
+                    actor: req.session.user.firstName + ' ' + req.session.user.lastName,
+                    action: req.body.status,
+                    noteType: 'changedNote'
+                };
+
+                var saveNote = new noteModel(noteObj);
+                saveNote.save(function(err) {
+                    callback(null);
+                });
+            } else {
+                callback(null);
+            }
+        }
+    ], function(err, result2) {
+        leadModel.update({ _id: req.body._id }, {
+            $set: {
+                assignName: req.body.assignName,
+                assignId: req.body.assignId,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                company: req.body.company,
+                mobile: req.body.mobile,
+                email: req.body.email,
+                status: req.body.status,
+                campaign: req.body.campaign,
+                priority: req.body.priority,
+                address: req.body.address,
+                zip: req.body.zip,
+                lastEdited: Date.now(),
+                editor: req.session.user.firstName
+            }
+        }, function(err, result) {
+            if (result.n == 1) {
+                res.status(201).json();
+            }
+        });
+    });
+};
+
 exports.getLeadDetails = function(req, res) {
-    leadModel.find({}, { email: 1, firstName: 1, lastName: 1, company: 1, assignName: 1, assignId: 1, lastUpdated: 1, status: 1, priority: 1 }, function(err, result) {
+    leadModel.find({}, { email: 1, firstName: 1, lastName: 1, company: 1, assignName: 1, assignId: 1, lastEdited: 1, editor: 1, status: 1, priority: 1 }, function(err, result) {
         res.status(200).json({ result: result });
     });
 };
 
 exports.leadProfile = function(req, res) {
-    leadModel.findOne({ _id: req.query.id }, function(err, result) {
+    leadModel.findOne({ _id: req.query.id }, { created_at: 0 }, function(err, result) {
         res.status(200).json({ result: result });
     });
 };

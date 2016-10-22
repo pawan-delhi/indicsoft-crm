@@ -27,19 +27,6 @@ exports.login = function(req, res, next) {
     }
 };
 
-exports.updateLoginTime = function(req, res) {
-    if (req.session.user) {
-        userModel.update({ email: req.session.user.email }, {
-            $set: {
-                lastLogin: Date.now()
-            },
-        }, function(err, result) {
-            console.log(result);
-        });
-    }
-};
-
-
 exports.sessionCheck = function(req, res) {
     if (req.session.user) {
         res.status(200).json({ role: req.session.user.role });

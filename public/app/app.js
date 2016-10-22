@@ -3,7 +3,9 @@ var indicsoft_erp = angular.module('indicsoft_erp', [
     'angular-toasty',
     'ui.bootstrap',
     'ngImgCrop',
-    'ngCsv'
+    'ngCsv',
+    'chart.js',
+    'btford.socket-io'
 ]);
 
 indicsoft_erp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -124,7 +126,7 @@ indicsoft_erp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         .state('404', {
             url: '/page-not-found',
             templateUrl: 'partials/404error.html',
-        })
+        });
     $urlRouterProvider.otherwise(function($injector, $location) {
         $injector.invoke(['$state', function($state) {
             $state.go('404');

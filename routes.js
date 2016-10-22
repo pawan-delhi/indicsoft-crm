@@ -5,7 +5,7 @@ module.exports = function(app, router) {
     var userController = require('./controllers/users');
     var commonController = require('./controllers/common');
 
-    app.post('/login', commonController.login, commonController.updateLoginTime);
+    app.post('/login', commonController.login);
     app.get('/sessionCheck', commonController.sessionCheck);
     app.get('/userAccountActivate', commonController.userAccountActivate);
     app.post('/userAccountCreation', commonController.userAccountCreation, commonController.login);
@@ -37,6 +37,7 @@ module.exports = function(app, router) {
 
     router.get('/userDetails', userController.userDetails);
     router.post('/addLead', userController.addLead);
+    router.post('/updateLead', userController.updateLead);
     router.get('/getLeadDetails', userController.getLeadDetails);
     router.get('/leadProfile', userController.leadProfile);
     router.get('/getNote', userController.getNote);

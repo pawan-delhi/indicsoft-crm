@@ -13,7 +13,7 @@
                         <div class="text-center">
                         </div>
                         <div class="col-md-6">
-                            <form class="form-horizontal" ng-submit="addLead(lead)">
+                            <form class="form-horizontal" ng-submit="updateLead(leadData)">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label"></label>
                                     <div class="col-md-9">
@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12" style="float:right;margin-top:5px;" ng-show="addNote==true">
                                         <input type="submit" class="btn btn-primary" ng-click="submitted==true" value="Submit">
-                                        <input type="button" class="btn btn-default" ng-click="addNote=false" value="Cancel">
+                                        <input type="button" class="btn btn-default" ng-click="addNote=false;noteData=null;" value="Cancel">
                                     </div>
                                 </div>
                             </form>
@@ -137,7 +137,7 @@
                                             <div>
                                                 <div class="note-margin">
                                                     <span class="date-note">{{noteList.noteDate  | date:'d MMM, yyyy, hh:mm:ss a' : 'UTC + 5:30'}}</span>
-                                                    <span> <span ng-if="noteList.actorId == userData._id"><strong>You</strong></span><span ng-if="noteList.actorId != userData._id"><strong>{{noteList.actor}}</strong></span> added <strong>{{noteList.action}}</strong></span>
+                                                    <span><span ng-if="noteList.actorId == userData._id"><strong>You</strong></span><span ng-if="noteList.actorId != userData._id"><strong>{{noteList.actor}}</strong></span> added <strong>{{noteList.action}}</strong></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,8 +149,7 @@
                                             <div>
                                                 <div class="note-margin">
                                                     <span class="date-note">{{noteList.noteDate  | date:'d MMM, yyyy, hh:mm:ss a' : 'UTC + 5:30'}}</span>
-                                                    <span><span ng-if="noteList.actorId == userData._id"><strong>You</strong></span><span ng-if="noteList.actorId != userData._id"><strong>{{noteList.actor}}</strong></span> <strong>added</strong> from
-                                                    <strong>Cancelled</strong> to <strong>Draft</strong></span>
+                                                    <span><span ng-if="noteList.actorId == userData._id"><strong>You</strong></span><span ng-if="noteList.actorId != userData._id"><strong>{{noteList.actor}}</strong></span> changed <strong>workflow</strong>                                                    to <strong>{{noteList.action}}</strong></span>
                                                 </div>
                                             </div>
                                         </div>
